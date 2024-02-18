@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">Formulario de Producto</h3>
+        </div>
+        <div class="card-body">
+          <!-- Agrega el formulario Angular -->
+          <form>
+            <div class="form-group">
+              <label for="nombreCategoria">Nombre de la Categoría:</label>
+              <!-- Agrega la directiva [(ngModel)] y el nombre del control -->
+              <input type="text" class="form-control" id="nombreCategoria" placeholder="Ingrese el nombre de la categoría"  name="nombre_categoria" required>
+            </div>
+            <!-- No es necesario incluir un campo para el ID, ya que se genera automáticamente -->
+            <div class="text-center mt-5">
+              <!-- Cambia el botón para que envíe el formulario -->
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
