@@ -27,3 +27,27 @@
   </div>
 </div>
 
+
+<div class="container mt-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (categorias of categoriasLista; track $index) {
+        <tr>
+          <th scope="row">{{categorias.id_categoria}}</th>
+          <td>{{categorias.nombre_categoria}}</td>
+          <td>Otto</td>
+          <td>mdo</td>
+        </tr>
+      }
+
+    </tbody>
+  </table>
+</div>
