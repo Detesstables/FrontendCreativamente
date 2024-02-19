@@ -9,11 +9,11 @@
         </div>
         <div class="card-body">
           <!-- Agrega el formulario Angular -->
-          <form>
+          <form [formGroup]="formularioCategoria" (submit)="crearCategoria()">
             <div class="form-group">
               <label for="nombreCategoria">Nombre de la Categoría:</label>
               <!-- Agrega la directiva [(ngModel)] y el nombre del control -->
-              <input type="text" class="form-control" id="nombreCategoria" placeholder="Ingrese el nombre de la categoría"  name="nombre_categoria" required>
+              <input type="text" class="form-control" id="nombreCategoria" placeholder="Ingrese el nombre de la categoría"  name="nombre_categoria" formControlName="nombre_categoria">
             </div>
             <!-- No es necesario incluir un campo para el ID, ya que se genera automáticamente -->
             <div class="text-center mt-5">

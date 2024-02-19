@@ -16,4 +16,7 @@ export class CategoriasService {
     return this.http.get<CategoriaModel[]>(`${this.apiUrl}/categoria`);
   }
 
+  crearCategoria(categoria:CategoriaModel): Observable<CategoriaModel>{
+    return this.http.post<CategoriaModel>(`${this.apiUrl}/categoria/create`,categoria)
+  }
 }
