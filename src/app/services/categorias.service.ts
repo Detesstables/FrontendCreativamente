@@ -19,4 +19,15 @@ export class CategoriasService {
   crearCategoria(categoria:CategoriaModel): Observable<CategoriaModel>{
     return this.http.post<CategoriaModel>(`${this.apiUrl}/categoria/create`,categoria)
   }
-}
+
+  eliminarCategoria(id: number): Observable<CategoriaModel> {
+    return this.http.delete<CategoriaModel>(`${this.apiUrl}/categoria/${id}`);
+  }
+
+  actualizarCategoria(id: number, nuevaCategoriaData: Partial<CategoriaModel>): Observable<CategoriaModel> {
+    //TAMBIEN SE PUEDE HACER DE ESTA FORMA DECLARANDO LA URL EN UNA VARIABLE 
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<CategoriaModel>(url, nuevaCategoriaData);
+  }
+
+  }

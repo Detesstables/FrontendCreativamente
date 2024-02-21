@@ -34,8 +34,7 @@
       <tr>
         <th scope="col">id</th>
         <th scope="col">Nombre</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+
       </tr>
     </thead>
     <tbody>
@@ -43,8 +42,9 @@
         <tr>
           <th scope="row">{{categorias.id_categoria}}</th>
           <td>{{categorias.nombre_categoria}}</td>
-          <td>Otto</td>
-          <td>mdo</td>
+          <td> <button type="button" class="btn btn-warning">Actualizar</button> </td>
+          <td> <button type="button" class="btn btn-danger"  (click)="eliminarCategoria(categorias.id_categoria)">Eliminar</button> </td>
+          
         </tr>
       }
 

@@ -4,6 +4,7 @@ import { CategoriasService } from '../../../services/categorias.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriaModel } from '../../../models/categoria.model';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,13 +15,14 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
   styleUrl: './formulario-categorias.component.css'
 })
 export class FormularioCategoriasComponent {
+  
 
   formularioCategoria: FormGroup
 
   categoriasLista: CategoriaModel[] = [] // Usa la interfaz Categoria
 
 
-  constructor(private categoriaService: CategoriasService, private form: FormBuilder) {
+  constructor(private categoriaService: CategoriasService, private form: FormBuilder, private router: Router) {
     this.formularioCategoria = this.form.group({
       nombre_categoria: ['', Validators. required]
     })
@@ -45,6 +47,7 @@ export class FormularioCategoriasComponent {
       // Llama al servicio para crear la categoría
       this.categoriaService.crearCategoria(nuevaCategoria).subscribe(
         (response) => {
+          this.router.navigate(['/formularioCategoria']);
           console.log('Categoría creada:', response);
           // Actualiza la lista de categorías si es necesario
         },
@@ -53,5 +56,30 @@ export class FormularioCategoriasComponent {
         }
       );
     }
+  }
+
+
+  eliminarCategoria(id:number){
+    this.categoriaService.eliminarCategoria(id).subscribe(
+      () =>{
+        console.log('categoria eliminada correctamente')
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  }
+
+
+  actualizarCategoria(id: number, nuevaCategoriaData: Partial<CategoriaModel>) {
+    this.categoriaService.actualizarCategoria(id, nuevaCategoriaData).subscribe(
+      categoriaActualizada => {
+        console.log('Categoría actualizada:', categoriaActualizada);
+        // Realizar cualquier acción adicional que necesites después de la actualización
+      },
+      error => {
+        console.error('Error al actualizar categoría:', error);
+      }
+    );
   }
 }
