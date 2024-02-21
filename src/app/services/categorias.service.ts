@@ -26,8 +26,9 @@ export class CategoriasService {
 
   actualizarCategoria(id: number, nuevaCategoriaData: Partial<CategoriaModel>): Observable<CategoriaModel> {
     //TAMBIEN SE PUEDE HACER DE ESTA FORMA DECLARANDO LA URL EN UNA VARIABLE 
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.put<CategoriaModel>(url, nuevaCategoriaData);
+/*     const url = `${this.apiUrl}/${id}`;
+    return this.http.patch<CategoriaModel>(url, nuevaCategoriaData); */
+    return this.http.patch<CategoriaModel>(`${this.apiUrl}/categoria/${id}`,nuevaCategoriaData);
   }
 
   }

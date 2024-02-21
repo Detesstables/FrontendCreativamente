@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class FormularioCategoriasComponent {
   
+  categoriaActual: CategoriaModel = {} as CategoriaModel;
 
   formularioCategoria: FormGroup
 
@@ -71,11 +72,34 @@ export class FormularioCategoriasComponent {
   }
 
 
+
   actualizarCategoria(id: number, nuevaCategoriaData: Partial<CategoriaModel>) {
     this.categoriaService.actualizarCategoria(id, nuevaCategoriaData).subscribe(
       categoriaActualizada => {
         console.log('Categoría actualizada:', categoriaActualizada);
         // Realizar cualquier acción adicional que necesites después de la actualización
+      },
+      error => {
+        console.error('Error al actualizar categoría:', error);
+      }
+    );
+  }
+
+
+  abrirModalEditar(categoria: CategoriaModel) {
+    this.categoriaActual = categoria;
+    this.formularioCategoria.patchValue({
+      nombre_categoria: categoria.nombre_categoria
+    });
+  }
+  
+  guardarCambios() {
+    const idCategoria = this.categoriaActual.id_categoria; // Asegúrate de tener el nombre correcto del campo ID
+    const nuevaCategoriaData = this.formularioCategoria.value;
+    this.categoriaService.actualizarCategoria(idCategoria, nuevaCategoriaData).subscribe(
+      categoriaActualizada => {
+        console.log('Categoría actualizada:', categoriaActualizada);
+        // Cerrar el modal aquí si es necesario
       },
       error => {
         console.error('Error al actualizar categoría:', error);

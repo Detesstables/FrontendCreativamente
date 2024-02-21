@@ -42,7 +42,7 @@
         <tr>
           <th scope="row">{{categorias.id_categoria}}</th>
           <td>{{categorias.nombre_categoria}}</td>
-          <td> <button type="button" class="btn btn-warning">Actualizar</button> </td>
+          <td> <button type="button" class="btn btn-warning" (click)="abrirModalEditar(categorias)" data-bs-toggle="modal" data-bs-target="#modalEditar">Actualizar</button> </td>
           <td> <button type="button" class="btn btn-danger"  (click)="eliminarCategoria(categorias.id_categoria)">Eliminar</button> </td>
           
         </tr>
@@ -50,4 +50,30 @@
 
     </tbody>
   </table>
+</div>
+
+
+<!-- MODAL PARA EDITAR -->
+<div class="modal" tabindex="-1" id="modalEditar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar categoria</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formularioCategoria">
+          <div class="form-group">
+            <label for="nombreCategoria">Nuevo nombre de la Categoría:</label>
+            <!-- Agrega la directiva [(ngModel)] y el nombre del control -->
+            <input type="text" class="form-control" id="nombreCategoria" placeholder="Ingrese el nombre de la categoría"  name="nombre_categoria" formControlName="nombre_categoria">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="guardarCambios()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
 </div>
