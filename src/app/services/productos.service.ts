@@ -12,7 +12,7 @@ export class ProductosService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerProductos(): Observable<productoModel[]> {
+/*   obtenerProductos(): Observable<productoModel[]> {
     return this.http.get<productoModel[]>(`${this.apiUrl}/producto`).pipe(
       map((productos: productoModel[]) => {
         return productos.map(producto => ({
@@ -21,6 +21,15 @@ export class ProductosService {
         }));
       })
     );
+  } */
+  
+  obtenerProductos(): Observable<productoModel[]> {
+    return this.http.get<productoModel[]>(`${this.apiUrl}/producto`);
+  }
+
+
+  crearProducto(producto: productoModel):Observable<productoModel>{
+    return this.http.post<productoModel>(`${this.apiUrl}/producto`,producto)
   }
   
 

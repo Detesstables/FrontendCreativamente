@@ -48,9 +48,11 @@ export class FormularioCategoriasComponent {
       // Llama al servicio para crear la categoría
       this.categoriaService.crearCategoria(nuevaCategoria).subscribe(
         (response) => {
-          this.router.navigate(['/formularioCategoria']);
+          
           console.log('Categoría creada:', response);
           // Actualiza la lista de categorías si es necesario
+          this.obtenerCategorias();
+          this.formularioCategoria.reset();
         },
         (error) => {
           console.error('Error al crear la categoría:', error);
@@ -64,6 +66,7 @@ export class FormularioCategoriasComponent {
     this.categoriaService.eliminarCategoria(id).subscribe(
       () =>{
         console.log('categoria eliminada correctamente')
+        this.obtenerCategorias();
       },
       (error) => {
         console.log(error)
@@ -78,6 +81,7 @@ export class FormularioCategoriasComponent {
       categoriaActualizada => {
         console.log('Categoría actualizada:', categoriaActualizada);
         // Realizar cualquier acción adicional que necesites después de la actualización
+        this.obtenerCategorias();
       },
       error => {
         console.error('Error al actualizar categoría:', error);
@@ -99,6 +103,7 @@ export class FormularioCategoriasComponent {
     this.categoriaService.actualizarCategoria(idCategoria, nuevaCategoriaData).subscribe(
       categoriaActualizada => {
         console.log('Categoría actualizada:', categoriaActualizada);
+        this.obtenerCategorias();
         // Cerrar el modal aquí si es necesario
       },
       error => {
